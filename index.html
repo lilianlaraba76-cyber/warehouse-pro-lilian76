@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10151d">
+<title>WAREHOUSE PRO LILIAN</title>
+<style>
+:root{--bg:#0c1118;--panel:#151d28;--panel2:#1b2634;--line:#2b394b;--txt:#f3f6fa;--muted:#9eacbd;--red:#ef4444;--red2:#b91c1c;--green:#22c55e;--amber:#f59e0b;--blue:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#10151df2;border-bottom:1px solid var(--line);padding:14px 16px;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:10px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#fb5555,#991b1b);display:grid;place-items:center;font-weight:900}
+.brand strong{display:block;letter-spacing:.5px}.brand small{color:var(--muted);font-size:11px;letter-spacing:1.3px}
+main{max-width:850px;margin:auto;padding:18px 14px 100px}.hello{margin:8px 2px 18px}.hello h1{font-size:25px;margin:0 0 5px}.muted{color:var(--muted)}.small{font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px;margin-bottom:12px}.stat{min-height:110px}.stat.alert{border-color:#7f1d1d;background:linear-gradient(145deg,#271820,#151d28)}.stock-controls{display:flex;gap:5px;justify-content:flex-end;margin-top:8px}.stock-controls button{padding:7px 10px;font-size:12px}.filter-btn{margin:0 0 10px;width:100%}.stat .num{font-size:28px;font-weight:800;margin:8px 0 0}.stat .label{font-size:12px;color:var(--muted)}.ico{font-size:21px}
+.section-title{font-size:17px;margin:22px 2px 12px}.actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+button,.btn{border:0;border-radius:12px;padding:12px 14px;font:600 14px system-ui;cursor:pointer;background:var(--red);color:white}
+button.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--txt)}button.danger{background:#45191d;color:#fecaca;border:1px solid #7f1d1d}button:active{transform:scale(.98)}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#10151df5;border-top:1px solid var(--line);display:flex;justify-content:flex-start;gap:4px;padding:7px 8px calc(7px + env(safe-area-inset-bottom));z-index:10;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain}.bottom::-webkit-scrollbar{display:none}
+.nav{background:transparent;color:var(--muted);padding:7px 6px;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:64px;flex:0 0 64px;border-radius:12px;white-space:nowrap}.nav b{font-size:19px;line-height:1.1}.nav.active{color:#ff6b6b;background:#351c24;border:1px solid #672c36}
+input,select,textarea{width:100%;background:#0e151e;border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--txt);font:14px system-ui;margin:5px 0 12px}
+label{font-size:12px;color:var(--muted);display:block}form .row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.list{display:flex;flex-direction:column;gap:9px}.item{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:12px;display:flex;justify-content:space-between;gap:10px;align-items:center}.item strong{display:block}.item small{color:var(--muted)}
+.pill{font-size:10px;padding:4px 8px;border-radius:99px;background:#253246;color:#cbd5e1}.pill.low{background:#4b1d1d;color:#fecaca}.pill.good{background:#123c2a;color:#bbf7d0}
+.toolbar{display:flex;gap:8px;margin-bottom:12px}.toolbar input{margin:0;flex:1}.toolbar button{white-space:nowrap}
+.empty{text-align:center;padding:28px 10px;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:14px}
+.hidden{display:none!important}.canvas-wrap{height:220px;background:var(--panel2);border-radius:12px;padding:10px}.canvas-wrap canvas{width:100%;height:100%}.scanner-video{width:100%;max-height:360px;aspect-ratio:4/3;object-fit:cover;background:#05070a;border-radius:16px;border:1px solid var(--line)}.notice{padding:11px;border-radius:10px;background:#17283a;color:#c6dcf7;font-size:12px;margin:12px 0}
+.scan-card{background:linear-gradient(155deg,#1b2634,#111923);border:1px solid #334357;border-radius:20px;padding:16px;box-shadow:0 12px 30px #0002}.scan-heading{display:flex;align-items:center;gap:12px;margin-bottom:14px}.scan-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:#35212a;font-size:25px}.scan-heading h2{font-size:17px;margin:0}.scan-heading p{font-size:12px;color:var(--muted);margin:4px 0 0}.scan-input{font-size:16px!important;padding:14px!important;border:1px solid #46576d!important;background:#0b121a!important}.scan-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.scan-actions button{min-height:48px}.camera-status{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);padding:10px 2px}.camera-dot{width:8px;height:8px;border-radius:50%;background:#64748b}.camera-dot.on{background:#22c55e;box-shadow:0 0 9px #22c55e66}.camera-controls{margin-top:10px}.scan-result-card{margin-top:12px}
+.temp{font-size:26px;font-weight:800}.danger-text{color:#fca5a5}.good-text{color:#86efac}
+dialog{background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:18px;width:min(92%,480px);padding:18px}dialog::backdrop{background:#000b}.modal-actions{display:flex;gap:8px}.modal-actions button{flex:1}
+footer{text-align:center;color:#718096;font-size:11px;margin:25px 0}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.actions{grid-template-columns:repeat(4,minmax(0,1fr))}.bottom{max-width:850px;left:50%;transform:translateX(-50%);border:1px solid var(--line);border-bottom:0;border-radius:16px 16px 0 0}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">WP</div><div><strong>WAREHOUSE PRO</strong><small>LILIAN · GESTION LOGISTIQUE</small></div></div></header>
+<main>
+<section id="dashboard" class="page">
+ <div class="hello"><h1>Bonjour Lilian 👋</h1><div class="muted small" id="today"></div></div>
+ <div class="grid">
+  <div class="card stat"><div class="ico">📦</div><div class="num" id="statProducts">0</div><div class="label">Références en stock</div></div>
+  <div class="card stat"><div class="ico">🧮</div><div class="num" id="statUnits">0</div><div class="label">Unités disponibles</div></div>
+  <div class="card stat"><div class="ico">🚚</div><div class="num" id="statReceipts">0</div><div class="label">Réceptions enregistrées</div></div>
+  <div class="card stat"><div class="ico">📝</div><div class="num" id="statOrders">0</div><div class="label">Commandes enregistrées</div></div>
+  <div class="card stat alert"><div class="ico">⚠️</div><div class="num" id="statLow">0</div><div class="label">Références en stock bas</div></div>
+ </div>
+ <div class="grid" style="margin-top:10px"><div class="card stat"><div class="ico">💶</div><div class="num" id="statValue">0 €</div><div class="label">Valeur estimée du stock</div></div><div class="card stat"><div class="ico">🏭</div><div class="num" id="statSuppliers">0</div><div class="label">Fournisseurs</div></div></div>
+ <h2 class="section-title">Accès rapide</h2>
+ <div class="actions">
+  <button onclick="openPage('stock')">📦 Stocks</button><button onclick="openPage('receipts')">🚚 Réception</button>
+  <button onclick="openPage('orders')">📝 Commandes</button><button onclick="openPage('temps')">🌡️ Températures</button><button class="secondary" onclick="openPage('scanner')">📷 Scanner</button><button class="secondary" onclick="openPage('suppliers')">🏭 Fournisseurs</button><button class="secondary" onclick="openPage('inventory')">🧾 Inventaire</button><button class="secondary" onclick="openPage('analytics')">📊 Statistiques</button>
+ </div>
+ <h2 class="section-title">Dernières opérations</h2><div id="recent"></div>
+ <div class="notice">Les informations sont enregistrées dans le stockage local de ce navigateur sur cet appareil. Pense à exporter une sauvegarde régulièrement.</div>
+</section>
+
+<section id="stock" class="page hidden">
+ <h1>📦 Gestion des stocks</h1><p class="muted small">Ajoute tes articles et suis les quantités disponibles.</p>
+ <button onclick="showProductForm()">＋ Ajouter un produit</button>
+ <div class="toolbar" style="margin-top:12px"><input id="stockSearch" placeholder="Rechercher un produit..." oninput="renderStock()"></div>
+ <button id="lowFilter" class="secondary filter-btn" onclick="toggleLowStock()">⚠️ Afficher uniquement les stocks bas</button>
+ <div id="stockList" class="list"></div>
+</section>
+
+<section id="receipts" class="page hidden">
+ <h1>🚚 Réception marchandises</h1><p class="muted small">Enregistre une livraison et mets à jour le stock.</p>
+ <div class="card"><form id="receiptForm">
+  <label>Fournisseur</label><input name="supplier" required placeholder="Nom du fournisseur">
+  <label>Produit reçu</label><select name="product" id="receiptProduct" required></select>
+  <div class="row"><div><label>Quantité reçue</label><input name="qty" type="number" min="1" step="1" required placeholder="Ex. 12"></div><div><label>Date</label><input name="date" type="date" required></div></div>
+  <label>Numéro de bon (facultatif)</label><input name="ref" placeholder="BL-0001">
+  <button type="submit">Enregistrer la réception</button>
+ </form></div>
+ <h2 class="section-title">Historique des réceptions</h2><div id="receiptList" class="list"></div>
+</section>
+
+<section id="orders" class="page hidden">
+ <h1>📝 Préparation des commandes</h1><p class="muted small">Crée une commande et réserve/déduis les articles du stock lors de sa validation.</p>
+ <div class="card"><form id="orderForm">
+  <label>Client / destinataire</label><input name="customer" required placeholder="Nom du client">
+  <label>Produit</label><select name="product" id="orderProduct" required></select>
+  <div class="row"><div><label>Quantité</label><input name="qty" type="number" min="1" required placeholder="Ex. 3"></div><div><label>Date</label><input name="date" type="date" required></div></div>
+  <button type="submit">Créer la commande</button>
+ </form></div>
+ <h2 class="section-title">Commandes enregistrées</h2><div id="orderList" class="list"></div>
+</section>
+
+<section id="temps" class="page hidden">
+ <h1>🌡️ Suivi des températures</h1><p class="muted small">Consigne les relevés de tes zones de stockage.</p>
+ <div class="card"><form id="tempForm">
+  <label>Zone</label><select name="zone"><option>Frais</option><option>Surgelés</option><option>Réserve sèche</option><option>Quai de réception</option><option>Autre</option></select>
+  <div class="row"><div><label>Température (°C)</label><input name="value" type="number" step="0.1" required placeholder="Ex. 2.5"></div><div><label>Date et heure</label><input name="date" type="datetime-local" required></div></div>
+  <label>Commentaire (facultatif)</label><input name="note" placeholder="Ex. Contrôle à la réception">
+  <button type="submit">Enregistrer le relevé</button>
+ </form></div>
+ <h2 class="section-title">Historique des relevés</h2><div id="tempList" class="list"></div>
+ <div class="notice">Les seuils de conformité doivent être définis selon les produits, les procédures de ton entreprise et la réglementation applicable. Cette application ne certifie pas la conformité sanitaire.</div>
+</section>
+
+
+<section id="scanner" class="page hidden"><h1>📷 Scanner</h1><p class="muted small">Scanne rapidement une étiquette ou recherche une référence manuellement.</p><div class="scan-card"><div class="scan-heading"><div class="scan-icon">▦</div><div><h2>Lecture de code-barres</h2><p>EAN · UPC · QR · Référence</p></div></div><label for="scanCode">Code ou référence produit</label><input id="scanCode" class="scan-input" placeholder="Saisir ou scanner un code…" autocomplete="off"><div class="scan-actions"><button onclick="lookupBarcode()">🔎 Rechercher</button><button class="secondary" id="scanStart" onclick="startScanner()">📷 Activer caméra</button></div><div class="camera-status"><span class="camera-dot" id="cameraDot"></span><span id="cameraStatus">Caméra désactivée</span></div><video id="scannerVideo" class="scanner-video hidden" playsinline></video><button class="secondary hidden camera-controls" id="stopScan" style="width:100%" onclick="stopScanner()">⏹ Désactiver la caméra</button><div id="scanResult" class="notice hidden"></div></div><div id="scanProduct" class="list"></div></section>
+<section id="suppliers" class="page hidden"><h1>🏭 Fournisseurs</h1><div class="card"><form id="supplierForm"><input type="hidden" name="id"><label>Nom du fournisseur</label><input name="name" required placeholder="Nom de l'entreprise"><div class="row"><div><label>Téléphone</label><input name="phone" placeholder="Téléphone"></div><div><label>Email</label><input name="email" type="email" placeholder="Email"></div></div><label>Adresse / notes</label><textarea name="notes" rows="2" placeholder="Adresse, contact, conditions…"></textarea><button>Enregistrer fournisseur</button></form></div><h2 class="section-title">Fournisseurs enregistrés</h2><div id="supplierList" class="list"></div></section>
+<section id="inventory" class="page hidden"><h1>🧾 Inventaire physique</h1><p class="muted small">Compare les quantités comptées au stock théorique et valide les écarts.</p><div class="card"><form id="inventoryForm"><label>Produit</label><select name="product" id="inventoryProduct" required></select><div class="row"><div><label>Quantité comptée</label><input name="counted" type="number" min="0" step="1" required></div><div><label>Date</label><input name="date" type="date" id="inventoryDate" required></div></div><label>Commentaire (facultatif)</label><input name="note" placeholder="Observations"><button>Enregistrer le comptage</button></form></div><h2 class="section-title">Écarts d'inventaire</h2><div id="inventoryList" class="list"></div></section>
+<section id="analytics" class="page hidden"><h1>📊 Statistiques</h1><div class="grid"><div class="card stat"><div class="label">Références</div><div class="num" id="anaProducts">0</div></div><div class="card stat"><div class="label">Valeur totale du stock</div><div class="num" id="anaValue">0 €</div></div><div class="card stat"><div class="label">Entrées cumulées</div><div class="num" id="anaIn">0</div></div><div class="card stat"><div class="label">Sorties cumulées</div><div class="num" id="anaOut">0</div></div></div><h2 class="section-title">Répartition des quantités</h2><div class="card canvas-wrap"><canvas id="stockChart"></canvas></div><h2 class="section-title">Produits les plus mouvementés</h2><div id="topProducts" class="list"></div></section>
+<section id="history" class="page hidden">
+ <h1>🕘 Historique général</h1><p class="muted small">Toutes les opérations enregistrées sur cet appareil.</p><div id="historyList" class="list"></div>
+ <h2 class="section-title">Sauvegarde et données</h2>
+ <div class="card"><p class="small muted">Exporte tes données au format JSON pour les conserver ou les transférer. L'import remplace les données actuellement présentes.</p>
+ <div class="actions"><button onclick="exportData()">Exporter la sauvegarde</button><button class="secondary" onclick="document.getElementById('importFile').click()">Importer une sauvegarde</button></div>
+ <input id="importFile" class="hidden" type="file" accept="application/json" onchange="importData(event)">
+ <button class="danger" style="margin-top:12px;width:100%" onclick="clearData()">Effacer toutes les données</button></div>
+</section>
+<footer>WAREHOUSE PRO LILIAN · Version 1.3 corrigée · Données locales · Scan / fournisseurs / inventaire / stats</footer>
+</main>
+
+<section id="warehouse" class="page hidden">
+ <h1>🗺️ Plan 2D de l'entrepôt</h1><p class="muted small">Vue des stocks répartis par zone et emplacement.</p>
+ <div class="actions"><button class="secondary" onclick="renderWarehouse('Frais')">🧊 Frais</button><button class="secondary" onclick="renderWarehouse('Sec')">📦 Sec</button><button class="secondary" onclick="renderWarehouse('Surgelé')">❄️ Surgelé</button><button class="secondary" onclick="renderWarehouse('')">Tout afficher</button></div>
+ <div id="warehouseMap" class="card" style="overflow:auto;margin-top:12px"></div><div id="warehouseDetails" class="list"></div>
+</section>
+
+<nav class="bottom">
+ <button class="nav active" data-page="dashboard" onclick="openPage('dashboard')"><b>⌂</b>Accueil</button>
+ <button class="nav" data-page="stock" onclick="openPage('stock')"><b>▦</b>Stocks</button><button class="nav" data-page="warehouse" onclick="openPage('warehouse')"><b>🗺</b>Plan 2D</button>
+ <button class="nav" data-page="receipts" onclick="openPage('receipts')"><b>⇩</b>Réception</button>
+ <button class="nav" data-page="orders" onclick="openPage('orders')"><b>☷</b>Commandes</button>
+ <button class="nav" data-page="temps" onclick="openPage('temps')"><b>♨</b>Températures</button>
+ <button class="nav" data-page="scanner" onclick="openPage('scanner')"><b>▣</b>Scan</button><button class="nav" data-page="suppliers" onclick="openPage('suppliers')"><b>♧</b>Fourn.</button><button class="nav" data-page="inventory" onclick="openPage('inventory')"><b>✓</b>Invent.</button><button class="nav" data-page="analytics" onclick="openPage('analytics')"><b>▥</b>Stats</button><button class="nav" data-page="history" onclick="openPage('history')"><b>◷</b>Historique</button>
+</nav>
+<dialog id="productDialog"><h2 id="productDialogTitle">Ajouter un produit</h2><form id="productForm">
+ <input type="hidden" name="id">
+ <label>Nom du produit</label><input name="name" required placeholder="Ex. Filet de pommes de terre">
+ <div class="row"><div><label>Référence</label><input name="sku" placeholder="REF-001"></div><div><label>Catégorie</label><select name="category"><option>Sec</option><option>Frais</option><option>Surgelé</option><option>Boissons</option><option>Autre</option></select></div></div>
+ <div class="row"><div><label>Quantité initiale</label><input name="qty" type="number" min="0" step="1" required value="0"></div><div><label>Seuil d'alerte</label><input name="min" type="number" min="0" step="1" value="5"></div></div>
+ <div class="row"><div><label>Code-barres</label><input name="barcode" placeholder="EAN / UPC"></div><div><label>Prix unitaire (€)</label><input name="cost" type="number" min="0" step="0.01" value="0"></div></div><label>Fournisseur principal</label><select name="supplier" id="productSupplier"><option value="">Non renseigné</option></select><label>Unité</label><select name="unit"><option>unités</option><option>cartons</option><option>kg</option><option>litres</option><option>palettes</option></select><h3 style="margin:14px 0 8px">📍 Adressage entrepôt</h3><div class="row"><div><label>Allée</label><input name="aisle" placeholder="F01 / S01 / G01"></div><div><label>Rack</label><input name="rack" placeholder="R01"></div></div><div class="row"><div><label>Niveau</label><input name="level" placeholder="N01"></div><div><label>Position / Bac</label><input name="bin" placeholder="B01"></div></div>
+ <div class="modal-actions"><button type="button" class="secondary" onclick="productDialog.close()">Annuler</button><button type="submit">Enregistrer</button></div>
+ </form></dialog>
+<script>
+const KEY='warehouse_pro_lilian_v1';
+let db=load();db.suppliers=db.suppliers||[];db.inventory=db.inventory||[];
+let lowOnly=false;let scannerStream=null;let scannerLoop=null;
+function fresh(){return {products:[],receipts:[],orders:[],temps:[],events:[],suppliers:[],inventory:[]}}
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||fresh()}catch(e){return fresh()}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));renderAll()}
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function today(){const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10)}
+function toggleLowStock(){lowOnly=!lowOnly;const b=document.getElementById('lowFilter');b.textContent=lowOnly?'✓ Stocks bas uniquement (actif)':'⚠️ Afficher uniquement les stocks bas';b.classList.toggle('danger',lowOnly);renderStock()}
+function adjustStock(pid,delta){const p=db.products.find(x=>x.id===pid);if(!p)return;if(p.qty+delta<0)return alert('Stock impossible : quantité déjà à zéro.');p.qty+=delta;log('Ajustement stock',`${delta>0?'+':''}${delta} ${p.unit} · ${p.name}`);save()}
+function stamp(){return new Date().toLocaleString('fr-FR')}
+function log(type,detail){db.events.unshift({id:id(),type,detail,date:stamp()})}
+function openPage(p){if(p==='warehouse')renderWarehouse();document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));document.getElementById(p).classList.remove('hidden');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.page===p));renderAll();window.scrollTo(0,0)}
+function showProductForm(product=null){const f=document.getElementById('productForm');f.reset();f.elements.id.value=product?.id||'';f.elements.name.value=product?.name||'';f.elements.sku.value=product?.sku||'';f.elements.category.value=product?.category||'Sec';f.elements.qty.value=product?.qty??0;f.elements.min.value=product?.min??5;f.elements.unit.value=product?.unit||'unités';f.elements.barcode.value=product?.barcode||'';f.elements.cost.value=product?.cost||0;f.elements.supplier.value=product?.supplier||'';f.elements.aisle.value=product?.aisle||({Frais:'F01',Sec:'S01',Surgelé:'G01'}[product?.category||'Sec']);f.elements.rack.value=product?.rack||'R01';f.elements.level.value=product?.level||'N01';f.elements.bin.value=product?.bin||'B01';document.getElementById('productDialogTitle').textContent=product?'Modifier le produit':'Ajouter un produit';productDialog.showModal()}
+document.getElementById('productForm').onsubmit=e=>{e.preventDefault();const f=e.target, v=Object.fromEntries(new FormData(f));let p=db.products.find(x=>x.id===v.id);if(p){Object.assign(p,{name:v.name,sku:v.sku,category:v.category,qty:+v.qty,min:+v.min,unit:v.unit,barcode:v.barcode,cost:+v.cost,supplier:v.supplier,aisle:v.aisle,rack:v.rack,level:v.level,bin:v.bin});log('Modification stock',p.name)}else{db.products.push({id:id(),name:v.name,sku:v.sku,category:v.category,qty:+v.qty,min:+v.min,unit:v.unit,barcode:v.barcode,cost:+v.cost,supplier:v.supplier,aisle:v.aisle,rack:v.rack,level:v.level,bin:v.bin});log('Ajout produit',v.name)}productDialog.close();save()};
+function renderStock(){const q=(document.getElementById('stockSearch')?.value||'').toLowerCase();let arr=db.products.filter(p=>(p.name+' '+p.sku+' '+p.category).toLowerCase().includes(q)&&(!lowOnly||p.qty<=p.min));document.getElementById('stockList').innerHTML=arr.length?arr.map(p=>`<div class="item"><div><strong>${esc(p.name)}</strong><small>${esc(p.sku||'Sans référence')} · ${esc(p.category)}${p.supplier?' · '+esc(db.suppliers.find(s=>s.id===p.supplier)?.name||''):''}</small><div style="margin-top:6px"><span class="pill ${p.qty<=p.min?'low':'good'}">${p.qty<=p.min?'Stock bas':'Stock OK'}</span> <small>Seuil : ${p.min}</small></div></div><div style="text-align:right"><strong>${p.qty} ${esc(p.unit)}</strong><div style="display:flex;gap:5px;margin-top:8px"><button class="secondary" onclick="adjustStock('${p.id}',-1)">−1</button><button class="secondary" onclick="adjustStock('${p.id}',1)">+1</button><button class="secondary" onclick="showProductForm(db.products.find(x=>x.id==='${p.id}'))">Modifier</button><button class="danger" onclick="deleteProduct('${p.id}')">×</button></div></div></div>`).join(''):'<div class="empty">Aucun produit. Appuie sur « Ajouter un produit ».</div>'}
+function deleteProduct(pid){if(confirm('Supprimer ce produit ?')){let p=db.products.find(x=>x.id===pid);db.products=db.products.filter(x=>x.id!==pid);log('Suppression produit',p?.name||'Produit');save()}}
+function fillSelects(){['receiptProduct','orderProduct'].forEach(id0=>{let s=document.getElementById(id0),old=s.value;s.innerHTML='<option value="">Choisir un produit</option>'+db.products.map(p=>`<option value="${p.id}">${esc(p.name)} (stock : ${p.qty})</option>`).join('');if(db.products.some(p=>p.id===old))s.value=old})}
+document.getElementById('receiptForm').elements.date.value=today();
+document.getElementById('receiptForm').onsubmit=e=>{e.preventDefault();let f=e.target,v=Object.fromEntries(new FormData(f)),p=db.products.find(x=>x.id===v.product);if(!p)return alert('Choisis un produit.');let q=+v.qty;p.qty+=q;db.receipts.unshift({id:id(),supplier:v.supplier,product:p.name,qty:q,date:v.date,ref:v.ref});log('Réception',`${q} ${p.unit} · ${p.name} · ${v.supplier}`);f.reset();f.elements.date.value=today();save()};
+document.getElementById('orderForm').elements.date.value=today();
+document.getElementById('orderForm').onsubmit=e=>{e.preventDefault();let f=e.target,v=Object.fromEntries(new FormData(f)),p=db.products.find(x=>x.id===v.product),q=+v.qty;if(!p)return alert('Choisis un produit.');if(q>p.qty)return alert('Stock insuffisant : '+p.qty+' '+p.unit+' disponible(s).');p.qty-=q;db.orders.unshift({id:id(),customer:v.customer,product:p.name,qty:q,date:v.date,status:'Préparée'});log('Commande',`${q} ${p.unit} · ${p.name} · ${v.customer}`);f.reset();f.elements.date.value=today();save()};
+document.getElementById('tempForm').elements.date.value=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16);
+document.getElementById('tempForm').onsubmit=e=>{e.preventDefault();let f=e.target,v=Object.fromEntries(new FormData(f));db.temps.unshift({id:id(),zone:v.zone,value:+v.value,date:v.date,note:v.note});log('Température',`${v.zone} : ${v.value} °C`);f.reset();f.elements.date.value=new Date(Date.now()-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16);save()};
+function renderReceipts(){document.getElementById('receiptList').innerHTML=db.receipts.length?db.receipts.map(x=>`<div class="item"><div><strong>${esc(x.product)}</strong><small>${esc(x.supplier)} · ${esc(x.date)} ${x.ref?'· '+esc(x.ref):''}</small></div><span class="pill good">+${x.qty}</span></div>`).join(''):'<div class="empty">Aucune réception enregistrée.</div>'}
+function renderOrders(){document.getElementById('orderList').innerHTML=db.orders.length?db.orders.map(x=>`<div class="item"><div><strong>${esc(x.customer)}</strong><small>${esc(x.product)} · ${esc(x.date)}</small></div><span class="pill">${x.qty} · ${esc(x.status)}</span></div>`).join(''):'<div class="empty">Aucune commande enregistrée.</div>'}
+function renderTemps(){document.getElementById('tempList').innerHTML=db.temps.length?db.temps.map(x=>`<div class="item"><div><strong>${esc(x.zone)}</strong><small>${esc(x.date)} ${x.note?'· '+esc(x.note):''}</small></div><span class="temp">${x.value.toFixed(1)}°</span></div>`).join(''):'<div class="empty">Aucun relevé de température.</div>'}
+function renderHistory(){let all=db.events.slice(0,100);document.getElementById('historyList').innerHTML=all.length?all.map(x=>`<div class="item"><div><strong>${esc(x.type)}</strong><small>${esc(x.detail)}</small></div><small>${esc(x.date)}</small></div>`).join(''):'<div class="empty">Aucune opération enregistrée.</div>'}
+function renderDashboard(){document.getElementById('statProducts').textContent=db.products.length;document.getElementById('statUnits').textContent=db.products.reduce((a,p)=>a+p.qty,0);document.getElementById('statReceipts').textContent=db.receipts.length;document.getElementById('statOrders').textContent=db.orders.length;document.getElementById('statLow').textContent=db.products.filter(p=>p.qty<=p.min).length;let ev=db.events.slice(0,5);document.getElementById('recent').innerHTML=ev.length?ev.map(x=>`<div class="item"><div><strong>${esc(x.type)}</strong><small>${esc(x.detail)}</small></div><small>${esc(x.date)}</small></div>`).join(''):'<div class="empty">Tes opérations récentes apparaîtront ici.</div>'}
+
+function fillSupplierSelect(){const el=document.getElementById('productSupplier');if(!el)return;let old=el.value;el.innerHTML='<option value="">Non renseigné</option>'+db.suppliers.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('');if(db.suppliers.some(s=>s.id===old))el.value=old}
+function renderSuppliers(){const el=document.getElementById('supplierList');if(!el)return;el.innerHTML=db.suppliers.length?db.suppliers.map(s=>`<div class="item"><div><strong>${esc(s.name)}</strong><small>${esc(s.phone||'')}${s.email?' · '+esc(s.email):''}<br>${esc(s.notes||'')}</small></div><div><button class="secondary" onclick="editSupplier('${s.id}')">Modifier</button><button class="danger" onclick="deleteSupplier('${s.id}')">×</button></div></div>`).join(''):'<div class="empty">Aucun fournisseur ajouté.</div>'}
+document.getElementById('supplierForm').onsubmit=e=>{e.preventDefault();let f=e.target,v=Object.fromEntries(new FormData(f)),s=db.suppliers.find(x=>x.id===v.id);if(s)Object.assign(s,v);else db.suppliers.push({id:id(),...v});log('Fournisseur',v.name);f.reset();save()};
+function editSupplier(sid){let s=db.suppliers.find(x=>x.id===sid);if(!s)return;let f=document.getElementById('supplierForm');f.elements.id.value=s.id;f.elements.name.value=s.name;f.elements.phone.value=s.phone||'';f.elements.email.value=s.email||'';f.elements.notes.value=s.notes||'';openPage('suppliers');f.scrollIntoView({behavior:'smooth'})}
+function deleteSupplier(sid){if(confirm('Supprimer ce fournisseur ?')){db.suppliers=db.suppliers.filter(s=>s.id!==sid);db.products.forEach(p=>{if(p.supplier===sid)p.supplier=''});log('Suppression fournisseur','Fournisseur');save()}}
+function renderInventory(){const sel=document.getElementById('inventoryProduct');if(sel){let old=sel.value;sel.innerHTML='<option value="">Choisir un produit</option>'+db.products.map(p=>`<option value="${p.id}">${esc(p.name)} · théorique ${p.qty}</option>`).join('');if(db.products.some(p=>p.id===old))sel.value=old}const list=document.getElementById('inventoryList');if(list)list.innerHTML=db.inventory.length?db.inventory.slice().reverse().map(x=>`<div class="item"><div><strong>${esc(x.product)}</strong><small>${esc(x.date)} · théorique ${x.expected} · compté ${x.counted}${x.note?' · '+esc(x.note):''}</small></div><span class="pill ${x.diff===0?'good':'low'}">${x.diff>0?'+':''}${x.diff}</span></div>`).join(''):'<div class="empty">Aucun inventaire réalisé.</div>'}
+document.getElementById('inventoryForm').elements.date.value=today();document.getElementById('inventoryForm').onsubmit=e=>{e.preventDefault();let f=e.target,v=Object.fromEntries(new FormData(f)),p=db.products.find(x=>x.id===v.product);if(!p)return;let counted=+v.counted,expected=p.qty,diff=counted-expected;if(!confirm(`Valider le comptage de ${p.name} ?
+Théorique : ${expected}
+Compté : ${counted}
+Écart : ${diff>0?'+':''}${diff}`))return;p.qty=counted;db.inventory.push({id:id(),product:p.name,productId:p.id,expected,counted,diff,date:v.date,note:v.note});log('Inventaire',`${p.name} · écart ${diff}`);f.reset();f.elements.date.value=today();save()};
+function renderAnalytics(){let value=db.products.reduce((sum,p)=>sum+(Number(p.cost||0)*Number(p.qty||0)),0);document.getElementById('anaProducts').textContent=db.products.length;document.getElementById('anaValue').textContent=value.toLocaleString('fr-FR',{style:'currency',currency:'EUR'});document.getElementById('anaIn').textContent=db.receipts.reduce((a,x)=>a+(+x.qty||0),0);document.getElementById('anaOut').textContent=db.orders.reduce((a,x)=>a+(+x.qty||0),0);let total=value;document.getElementById('statValue').textContent=total.toLocaleString('fr-FR',{style:'currency',currency:'EUR'});document.getElementById('statSuppliers').textContent=db.suppliers.length;let top=db.products.map(p=>({name:p.name,count:db.events.filter(ev=>ev.detail&&ev.detail.includes(p.name)).length})).sort((a,b)=>b.count-a.count).slice(0,5);document.getElementById('topProducts').innerHTML=top.length?top.map(x=>`<div class="item"><strong>${esc(x.name)}</strong><span class="pill">${x.count} mouvements</span></div>`).join(''):'<div class="empty">Ajoute des produits pour afficher les statistiques.</div>';drawStockChart()}
+function drawStockChart(){let c=document.getElementById('stockChart');if(!c)return;let ctx=c.getContext('2d'),w=c.width=c.clientWidth*2,h=c.height=c.clientHeight*2;ctx.clearRect(0,0,w,h);let data=db.products.slice(0,8),max=Math.max(1,...data.map(p=>p.qty)),barW=w/Math.max(data.length,1)*.58;ctx.font='24px system-ui';data.forEach((p,i)=>{let x=(i+.2)*w/data.length,y=h-35-(p.qty/max)*(h-90);ctx.fillStyle='#60a5fa';ctx.fillRect(x,y,barW,(p.qty/max)*(h-90));ctx.fillStyle='#e5e7eb';ctx.fillText(String(p.qty),x,y-8);ctx.save();ctx.translate(x+barW/2,h-5);ctx.rotate(-.45);ctx.fillText(p.name.slice(0,12),0,0);ctx.restore()})}
+function lookupBarcode(){let code=document.getElementById('scanCode').value.trim();let found=db.products.find(p=>p.barcode===code||p.sku===code);let res=document.getElementById('scanResult'),out=document.getElementById('scanProduct');res.classList.remove('hidden');if(!found){res.textContent='Référence non trouvée. Tu peux créer le produit dans Stocks puis renseigner son code-barres.';out.innerHTML='';return}res.textContent=`Produit trouvé : ${found.name} · Stock ${found.qty} ${found.unit}`;out.innerHTML=`<div class="item"><div><strong>${esc(found.name)}</strong><small>${esc(found.sku||found.barcode||'')}</small></div><div><button onclick="adjustStock('${found.id}',1)">+ Ajouter 1</button><button class="secondary" onclick="showProductForm(db.products.find(x=>x.id==='${found.id}'))">Modifier</button></div></div>`}
+async function startScanner(){if(scannerStream)return;if(!('BarcodeDetector' in window)){alert('Le scan caméra n’est pas pris en charge sur ce navigateur. Saisis le code manuellement.');return}try{scannerStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});let v=document.getElementById('scannerVideo');v.srcObject=scannerStream;v.classList.remove('hidden');await v.play();document.getElementById('stopScan').classList.remove('hidden');document.getElementById('scanStart').classList.add('hidden');document.getElementById('cameraDot').classList.add('on');document.getElementById('cameraStatus').textContent='Caméra activée · Prête à scanner';let detector=new BarcodeDetector({formats:['ean_13','ean_8','upc_a','upc_e','code_128','code_39','qr_code']});scannerLoop=setInterval(async()=>{try{let codes=await detector.detect(v);if(codes.length){document.getElementById('scanCode').value=codes[0].rawValue;lookupBarcode();stopScanner()}}catch(e){}},450)}catch(e){scannerStream=null;alert('Impossible d’accéder à la caméra. Vérifie l’autorisation caméra et utilise HTTPS si nécessaire.')}}
+function stopScanner(){if(scannerLoop)clearInterval(scannerLoop);scannerLoop=null;if(scannerStream)scannerStream.getTracks().forEach(t=>t.stop());scannerStream=null;let v=document.getElementById('scannerVideo');if(v){v.pause();v.srcObject=null;v.classList.add('hidden')}document.getElementById('stopScan')?.classList.add('hidden');document.getElementById('scanStart')?.classList.remove('hidden');document.getElementById('cameraDot')?.classList.remove('on');let status=document.getElementById('cameraStatus');if(status)status.textContent='Caméra désactivée'}
+
+function renderWarehouse(category=''){
+ const zoneNames=['Frais','Sec','Surgelé'];
+ const colors={Frais:'#3b82f6',Sec:'#b7791f',Surgelé:'#06b6d4'};
+ const products=db.products.filter(p=>!category||p.category===category);
+ const map=document.getElementById('warehouseMap'); if(!map)return;
+ const visibleZones=zoneNames.filter(z=>!category||z===category);
+ map.innerHTML=`<div style="display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:12px;min-width:700px">${visibleZones.map(z=>{
+  const items=products.filter(p=>p.category===z);
+  return `<div style="border:2px solid ${colors[z]};border-radius:14px;padding:12px;background:${colors[z]}18;min-height:160px"><h3 style="color:${colors[z]}">${z==='Frais'?'🧊 Zone F — FRAIS':z==='Sec'?'📦 Zone S — SEC':'❄️ Zone G — SURGELÉ'}</h3><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">${items.length?items.map(p=>`<button type="button" class="secondary" style="text-align:left;border-color:${colors[z]};height:auto;white-space:normal" onclick="showProductForm(db.products.find(x=>x.id==='${p.id}'))"><b>${esc(p.name)}</b><div class="small muted">${esc(p.aisle||'Allée ?')} · ${esc(p.rack||'Rack ?')} · ${esc(p.level||'Niveau ?')} · ${esc(p.bin||'Bac ?')}</div><strong>${p.qty} ${esc(p.unit||'')}</strong></button>`).join(''):'<div class="empty">Zone vide</div>'}</div></div>`;
+ }).join('')}</div>`;
+ const detail=document.getElementById('warehouseDetails'); if(detail)detail.innerHTML=products.length?`<div class="card"><b>${products.length} références</b> affichées — touche une case produit pour ouvrir sa fiche.</div>`:'<div class="empty">Aucun produit dans cette catégorie.</div>';
+}
+
+function renderAll(){renderDashboard();renderStock();renderWarehouse();renderReceipts();renderOrders();renderTemps();renderHistory();fillSelects();fillSupplierSelect();renderSuppliers();renderInventory();renderAnalytics()}
+function exportData(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='warehouse-pro-lilian-sauvegarde.json';a.click();URL.revokeObjectURL(a.href)}
+function importData(e){let file=e.target.files[0];if(!file)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.products||!x.receipts||!x.orders||!x.temps)throw Error();if(confirm('Remplacer toutes les données actuelles par cette sauvegarde ?')){db=x;save();alert('Sauvegarde importée.')}}catch(err){alert('Fichier de sauvegarde invalide.')}e.target.value=''};r.readAsText(file)}
+function clearData(){if(confirm('Effacer définitivement toutes les données de cette application sur ce navigateur ?')){db=fresh();save()}}
+document.getElementById('today').textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+renderAll();
+</script>
+</body></html>
